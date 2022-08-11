@@ -23,7 +23,6 @@ def comb1(n, k):
             pa *= i
         for i in range(1, k + 1):
             pb *= i
-    #    return np.int64(pa/pb)
     return pa // pb
 
 
@@ -207,50 +206,14 @@ def G(states, N):
 def Hinit(N):
     size = comb1(2 * N, N)
     epm = sparse.diagonalize(N * np.ones(size))
-    print("epm done")
     states = prep(N)
-    print("states done")
+    print("States Prepared")
     lamm = sparse.COO(lamb(states, N), data=1.0, shape=epm.shape)
-    print("lamm done")
+    print("Lambda matrix Done")
     gamm = 2 * sparse.COO(gamma(states, N), data=1, shape=epm.shape)
-    print("gamm done")
+    print("W Matrix Done")
     gm = sparse.COO(G(states, N), data=1.0, shape=epm.shape)
+    print("G Matrix Done")
     return epm, lamm, gamm, gm
 
 
-# TODO add prune function
-"""
-N = 8
-p = 100
-from h import Hinit as oldh
-
-epm, lamm, gamm, gm = oldh(N)
-epm1, lamm1, gamm1, gm1 = Hinit(N)
-print(epm.shape, epm1)
-epm1 = epm1.todense()
-lamm1 = lamm1.todense()
-gamm1 = gamm1.todense()
-gm1 = gm1.todense()
-rand = np.random.uniform(-1,1,(4,p))
-Ho = np.tensordot(rand[0],lamm,axes =0)
-Hn = np.tensordot(rand[0],lamm1,axes =0)
-for i in range(p):
-    Ho[i]+=rand[1,i]*gamm+rand[2,i]*gm+rand[3,i]*epm
-    Hn[i]+=rand[1,i]*gamm1+rand[2,i]*gm1+rand[3,i]*epm1
-import numpy.linalg as LA
-vo = LA.eigh(Ho)[1][:,:,0]
-vn = LA.eigh(Hn)[1][:,:,0]
-expo = np.zeros((3,p))
-expn = np.zeros((3,p))
-for i in range(p):
-    expo[0,i] = np.matmul(vo[i],np.matmul(lamm,vo[i]))
-    expn[0,i] = np.matmul(vn[i],np.matmul(lamm1,vn[i]))
-    expo[1,i] = np.matmul(vo[i],np.matmul(gamm,vo[i]))
-    expn[1,i] = np.matmul(vn[i],np.matmul(gamm1,vn[i]))
-    expo[2,i] = np.matmul(vo[i],np.matmul(gm,vo[i]))
-    expn[2,i] = np.matmul(vn[i],np.matmul(gm1,vn[i]))
-
-#print(np.round(expo,5))
-#print(np.round(expn,5))
-print(np.argwhere(np.round(expo,5)-np.round(expn,5)))
-"""

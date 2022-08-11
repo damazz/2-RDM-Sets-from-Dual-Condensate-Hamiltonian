@@ -43,7 +43,6 @@ def index(state, N):
         N -= state[i]
     if out < 0:
         print("error")
-#        print(state, out)
     return out
 
 

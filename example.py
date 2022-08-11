@@ -4,8 +4,8 @@ import numpy as np
 import numpy.linalg as LA
 import time
 t = time.time()
-N = 10  # Declaring the number of particle
-p = 200  # Declaring the number of random RDMs to be sampled
+N = 4  # Declaring the number of particle
+p = 100  # Declaring the number of random RDMs to be sampled
 
 run = densed(N)  # initializing run
 rand = np.random.uniform(-1, 1, (p, 3))  # choosing random Hamiltonian Configurations
@@ -14,8 +14,6 @@ hammat = run.ham(rand)  # generating the Hamiltonian
 vmin = LA.eigh(hammat)[1][:, :, 0]  # choosing the lowest energy eigenvalue
 
 lamD, lamG = run.lambdas(vmin)  # Getting the Lambda values from the D and G 2-RDMs
-print(np.max(lamG))
-cat
 lamexp, gamexp, gmexp = run.expects(
     vmin
 )  # Getting expectation values for each component of Hamiltonian
