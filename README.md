@@ -1,4 +1,4 @@
-# Dual Condensate Hamiltonian
+# 2-RDM Sets from Dual Condensate Hamiltonian
 
 ## Getting Started
 Create a Python Virtual Environment
