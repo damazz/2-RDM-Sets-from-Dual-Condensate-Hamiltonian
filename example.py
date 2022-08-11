@@ -13,6 +13,11 @@ rand = np.random.uniform(-1, 1, (p, 3))  # choosing random Hamiltonian Configura
 hammat = run.ham(rand)  # generating the Hamiltonian
 vmin = LA.eigh(hammat)[1][:, :, 0]  # choosing the lowest energy eigenvalue
 
+#it is also possible to extract the individual terms of the Hamiltonian:
+#run.lamm #returns Lambda Matrix
+#run.gamm #return W matrix 
+#run.gm #returns G matrix
+
 lamD, lamG = run.lambdas(vmin)  # Getting the Lambda values from the D and G 2-RDMs
 lamexp, gamexp, gmexp = run.expects(
     vmin

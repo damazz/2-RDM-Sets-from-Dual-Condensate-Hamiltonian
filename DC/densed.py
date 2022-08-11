@@ -31,8 +31,7 @@ def reshuffle(lamc,lamd,gamc,gamd,gmc,gmd,ind):
         gamm[jg,kg] = gamd[i]
     for i in numba.prange(gmd.shape[0]):
         jgm= np.argwhere(gmc[0,i]==ind)[0,0]
-        kgm= np.argwhere(gmc[1,i]==ind)[0,0]
-        gm[jgm,kgm] = gmd[i]
+        kgm= np.argwhere(gmc[1,i]==ind)[0,0] gm[jgm,kgm] = gmd[i]
     return lamm, gamm, gm
 
 @numba.jit(nopython=True, nogil=True, parallel = True, cache = True)
@@ -65,7 +64,7 @@ class densed(common):
 
 
 if __name__ == "__main__":
-    N = 10  # Declaring the number of particles
+    N = 4  # Declaring the number of particles
     p = 100  # Declaring the number of random RDMs to be sampled
 
     run = densed(N)  # initializing run
