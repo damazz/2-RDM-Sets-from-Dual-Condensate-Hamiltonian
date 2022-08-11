@@ -1,4 +1,4 @@
-# Quantum Phase Transitions: Dual Condensate Hamiltonian
+# 2-RDMs from Dual Condensate Hamiltonian
 
 ## Getting Started
 Create a Python Virtual Environment
